@@ -5,3 +5,32 @@ I also added my version of it, you can use all the sliders of your juno 106 in r
 The buttons are in reverse order, as it's theirs binary logicac order.
 There's also a 106 user's manual.
 
+here is the Help to use implement my system :
+
+Use this M4L device to use my version : juni_106_2.amxd
+entrance_2.maxpat should be open at the same time as the amxd.
+
+Your Juno Function 3 positions button should be set on III : "all" to allow all types of entering messages to the juno.
+Please also use the "manual" mode for the Juno to avoid any interferance from presets.
+
+When using entrance patch, you should select under the two "midifinfo" objects present at the Top and bottom of the patch your midi I/O interface.
+
+the two patches are communicating with each other using udpsend/receive objects, in order to use this function you should allow max to communicate with the network.
+The choice of the UDP port number is up to you, but be aware to use the consistent host : local host aka 127.0.0.1
+
+In the amxd device
+udpsend 127.0.0.1 1002 =>sends datas to entrance within the localhost network on the port 1002
+
+In entrance.maxpat
+udpsend 127.0.0.1 1001 =>sends datas to Live within the localhost network on the port 1001
+
+What I would recommend to do as "Best practices" to use the patch :
+
+Do not use at the same time data input recording and data output, this may result in conflicts and makes juno unable to understand what it does.
+- So record first then edit in live the recorded datas.
+-Please use Live's bundled version of MAX/MSP otherwise there are some risks of conflicts when two instances of a single MAX are opened.
+-Also, if you are on PC, please be sure to use an official MAX 9 version, cracks tends to creates CPU overflow which are quite annoying (but still does permit to use the patch).
+this issue might be fixed by switching off the RNBO Server in preferences. Cycling puts this on by defaults but it's likely to cause audio buffer overflow for some reasons.
+
+I Hope this helps 
+
